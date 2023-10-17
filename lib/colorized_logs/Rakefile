@@ -1,0 +1,1 @@
+import './lib/colorized_logs/tasks/colorized_logs.rake'
