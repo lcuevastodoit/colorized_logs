@@ -90,7 +90,7 @@ export REDLOGS=Controller,Service,gems rails_alias
     module Mongoid
       module Loggable
         def logger
-          @logger = Rails.application.config.logger
+          @logger = Rails.application.config.logger || Logger.new(STDOUT)
         end
       end
     end
