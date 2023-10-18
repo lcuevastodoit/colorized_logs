@@ -53,9 +53,15 @@ end
   ```
 - If you want to colorize some words in specific color, you can pass an environment variable to the rails server. You can mark only one word or multiple words separated by comma
 
-  ```shell
-  REDLOGS=error,fatal,lost bundle exec rails s
-  ```
+```shell
+REDLOGS=error,fatal,lost bundle exec rails s
+```
+
+-  or if you use an alias to start the server. Use `export` before the alias
+
+```shell
+export REDLOGS=Controller,Service,gems rails_alias
+```
 #### Available environment variables
 -  REDLOGS: colorize words in red
 -  YELLOWLOGS: colorize words in yellow
