@@ -79,10 +79,11 @@ export REDLOGS=Controller,Service,gems rails_alias
     # config/initializers/core_extensions.rb
     Dir[File.join(Rails.root, 'lib', 'core_extensions', '**', '*.rb')].sort.each { |l| require l }
   ```
-  - Then we nee to create the monkey patch file, like this
+  - Create a new `lib/core_ext/mongoid` folder
+  - Then we need to create the monkey patch file called `loggable.rb`, like this
   ```ruby
     # encoding: utf-8
-    # lib/core_ext/loggable.rb
+    # lib/core_ext/mongoid/loggable.rb
 
     require "path to colorized_logs gem" # or require 'colorized_logs'
 
