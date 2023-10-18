@@ -69,3 +69,28 @@ export REDLOGS=Controller,Service,gems rails_alias
 -  BLUELOGS: colorize words in blue
 -  CYANLOGS: colorize words in cyan
 -  PURPLELOGS: colorize words in purple
+
+## Colorize other logs produced by gems
+  Some gems produce their own logs. In that case we need to monkeypatch de gems logger behaviour to use the `Rails.application.config.logger`.
+
+###  Mongoid example
+  - First we need to make an initializer to load any monkey patch on `lib/core_extensions`` folder, like this
+  ```ruby
+    # config/initializers/core_extensions.rb
+    Dir[File.join(Rails.root, 'lib', 'core_extensions', '**', '*.rb')].sort.each { |l| require l }
+  ```
+  - Then we nee to create the monkey patch file, like this
+  ```ruby
+    # encoding: utf-8
+    # lib/core_ext/loggable.rb
+
+    require "path to colorized_logs gem" # or require 'colorized_logs'
+
+    module Mongoid
+      module Loggable
+        def logger
+          @logger = Rails.application.config.logger
+        end
+      end
+    end
+  ```
